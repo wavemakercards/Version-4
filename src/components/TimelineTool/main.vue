@@ -51,7 +51,7 @@ export default {
   },
   methods: {
       AddNewTool(){
-        let id = this.$uuid.v1()
+        let id = this.$root.uuid.v1()
         let newObj = {}
         newObj.uuid= id
         newObj.title = "Title Here"

@@ -13,9 +13,12 @@ import { uuid } from 'vue-uuid';
 new Vue({
     store,
     vuetify,
-    uuid,
     data: () => ({
-        db
+        db,
+        uuid,
+        liveData: {
+            SelectedCard: '', // allows the editor to know what card is selected
+        }
     }),
     methods: {
         FindNodeByID: function(id, parentObj) {
