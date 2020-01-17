@@ -48,7 +48,7 @@ export default {
       current: null
     };
   },
-  updated() {
+  mounted() {
     if (this.current != this.myEl.uuid) {
       this.current = this.myEl.uuid;
       console.log("mounting editor", this.myEl.uuid);

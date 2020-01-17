@@ -3,8 +3,9 @@
 
       
 
-        <div v-if="this.$root.ProjectState.SelectedCard">   
-        <TextSettings v-if="this.$root.ProjectState.SelectedCard.icon === 'file'" />
+        <div v-if="this.$root.ProjectState.SelectedCard"> 
+            <!-- the prop means it can be used all over the place, the KEY makes it rerender when the element changes --> 
+        <TextEditor v-if="this.$root.ProjectState.SelectedCard.icon === 'file'" :myEl="this.$root.ProjectState.SelectedCard" :key="this.$root.ProjectState.SelectedCard.uuid"/>
         <FolderSettings v-if="this.$root.ProjectState.SelectedCard.icon === 'folder'" />
         </div>     
         <div v-else>
@@ -18,11 +19,11 @@
 
 <script>
 import FolderSettings from "./FolderSettings"
-import TextSettings from "./TextSettings"
+import TextEditor from "./TextEditor"
 export default {
     components : {
         FolderSettings,
-        TextSettings
+        TextEditor
     }
 }
 </script>

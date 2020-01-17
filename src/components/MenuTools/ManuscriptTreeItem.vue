@@ -6,7 +6,7 @@
     :value="value"
     @input="emitter"
   >
-    <div :key="el.id" v-for="(el, index) in realValue" >
+    <div :key="el.uuid" v-for="(el, index) in realValue" >
       <v-list-item link  :class="TagMe(el)" >
         <v-list-item-action v-if="el.icon==='folder' && !el.open" @click="el.open= !el.open">
             <v-icon>folder</v-icon>
@@ -21,9 +21,12 @@
           </v-list-item-action>
 
 
-          <v-list-item-content @click="ItemClick(el, index)">
-            <v-list-item-title> {{ el.name }}</v-list-item-title>
+          <v-list-item-content @click="itemclick(el, index)">
+            <v-list-item-title> {{ el.name }}</v-list-item-title>           
           </v-list-item-content>
+           <v-list-item-action v-if="el.hidden" >
+             <v-icon >check_box</v-icon>
+              </v-list-item-action>
         </v-list-item>
 
         <div v-if="el.open" >
@@ -70,15 +73,16 @@ export default {
       // console.log("input", value);
       this.$emit("input", value);
     },
-    ItemClick(el, index) {
-      console.log("click" , el)
-     el.index = index
-     this.$emit("SelectedNode", el);
+    itemclick(el, index) {
+     el.index = index;
+      // set it in the root variable - not using vuex I think!
+      this.$root.ProjectState.SelectedCard = el;
+      this.$root.SaveProjectData();
     },
     TagMe(el){
       let response =''
       if(this.$root.ProjectState.SelectedCard){
-        if(el.id === this.$root.ProjectState.SelectedCard.id){
+        if(el.uuid === this.$root.ProjectState.SelectedCard.uuid){
         response ='primary'
         }
       }

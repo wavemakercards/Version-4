@@ -2,7 +2,8 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap");
 
 html{
-  overflow: auto !important;
+  overflow-y: auto !important;
+  overflow-x: none; 
 }
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -24,6 +25,7 @@ html{
    <Loading v-if="ShowSection ==='Loading' || !this.$store.state.AppLoaded"/>
    <MainMenu v-if="ShowSection ==='Create'"/>
    <WaveMaker v-if="ShowSection ==='Project'"/>
+   <pre>{{this.$root.ProjectState}}</pre>
   </v-app>
 </template>
 

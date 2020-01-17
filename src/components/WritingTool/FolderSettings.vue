@@ -23,9 +23,6 @@
     </v-dialog>
         </v-col>
       </v-row>
-
-
-
     </v-container>
   </div>
 </template>
@@ -39,39 +36,17 @@ export default {
   },
   computed: {
     myEl() {
-      return this.$store.state.ManuscriptTree.ItemSelected;
+      return this.$root.ProjectState.SelectedCard;
     }
   },
   methods: {
     DeleteItem() {
-this.dialog = false
-      // need to get the New_Index and New_Parent of the parent
-      this.$store.dispatch("DeleteCurrentItem");
+      this.dialog = false
+      this.$root.DeleteManuscriptItem()
     },
     trg() {
-      this.$store.commit("triggersave");
-    },
-    FindParentAndPositionInElements(id, parentObj) {
-      //console.log("ID to find", id)
-        if(!parentObj){
-             parentObj = this.$store.state.ManuscriptTree
-          }
-         let el =  null
-        let arrtosearch = parentObj.elements
-        //console.log("Searcing" ,arrtosearch)
-          arrtosearch.forEach((element,index) => {
-            if(element.id === id){
-              el ={
-                parentObj,
-                index
-              }
-              }else{
-                 if(element.elements){
-                   el = this.FindParentAndPositionInElements(id, element) 
-                 }
-              }
-          });
-          return el
+     this.$root.ProjectState.SelectedCard.name =this.myEl.name
+     this.$root.SaveProjectData()
     }
   }
 };

@@ -3,7 +3,7 @@
 
        <DefaultWelcome v-if="MySection===''"/>
 
-     <WritingTool v-if="MySection==='manuscripat'"/>
+     <WritingTool v-if="MySection==='manuscript'"/>
     <SettingsTool v-if="MySection==='settings'" />
     <TimelineTool v-if="MySection==='timeline'"  />
     <MindmapTool v-if="MySection==='mindmap'"  />

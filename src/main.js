@@ -23,28 +23,45 @@ new Vue({
         }
     }),
     methods: {
-        FindNodeByID: function(id, parentObj) {
+        FindNodeByID: function (uuid, parentObj) {
+            console.log("Find Node Started")
             let el = false
-            let arrtosearch = parentObj.elements
+            let arrtosearch = parentObj
+            if (parentObj != this.$root.ProjectState.Manuscript) {
+                arrtosearch = parentObj.elements
+            }
             arrtosearch.some((element, index) => {
-                if (element.id === id) {
+                if (element.uuid === uuid) {
                     // console.log("Match Found", id)
                     el = {}
                     el.parentObj = parentObj
                     el.index = index
-                        //  console.log("result: ", el)
+                    //  console.log("result: ", el)
                     return true
                 } else {
                     if (element.elements && !el) {
-                        el = this.$root.FindNodeByID(id, element)
+                        el = this.$root.FindNodeByID(uuid, element)
                     }
                 }
             });
             return el
         },
+        DeleteManuscriptItem() {
+            // need to get the New_Index and New_Parent of the parent
+            let pos = this.$root.FindNodeByID(this.$root.ProjectState.SelectedCard.uuid, this.$root.ProjectState.Manuscript)
+            console.log(pos)
+            if (pos.parentObj === this.$root.ProjectState.Manuscript) {
+                this.$root.ProjectState.SelectedCard = null
+                pos.parentObj.splice(pos.index, 1);
+            } else {
+                this.$root.ProjectState.SelectedCard = pos.parentObj;
+                pos.parentObj.elements.splice(pos.index, 1);
+            }
+            this.$root.SaveProjectData()
+        },
         SaveProjectData() {
             let MYstate = { id: 1, state: JSON.stringify(this.$root.ProjectState), lastupdated: Date.now() }
-            this.$root.db.ProjectState.put(MYstate).then(function(updated) {
+            this.$root.db.ProjectState.put(MYstate).then(function (updated) {
                 if (updated) {
                     console.log("Project Save done");
                 } else {
