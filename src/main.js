@@ -15,7 +15,7 @@ new Vue({
     data: () => ({
         db,
         uuid,
-        liveData: {
+        ProjectState: {
             ProjectInfo: null, // global Project Info
             Manuscript: [],
             SelectedCard: '', // allows the editor to know what card is selected
@@ -43,7 +43,8 @@ new Vue({
             return el
         },
         SaveProjectData() {
-            this.$root.db.ProjectInfo.put(this.$root.liveData.ProjectInfo).then(function(updated) {
+            let MYstate = { id: 1, state: JSON.stringify(this.$root.ProjectState), lastupdated: Date.now() }
+            this.$root.db.ProjectState.put(MYstate).then(function(updated) {
                 if (updated) {
                     console.log("Project Save done");
                 } else {
@@ -54,24 +55,20 @@ new Vue({
     },
     beforeMount() {
         this.$store.commit('initialiseStore'); //loading state from localstorage
-
-
         console.log("getting the data from the database")
-        this.$root.db.ProjectInfo.get({
+        this.$root.db.ProjectState.get({
             id: 1
         }).then((result) => {
             return result;
         }).then(data => {
-            //console.log(data)
+            console.log("Project State Load ", data)
             if (data) {
-                this.$root.liveData.ProjectInfo = data
-                this.$root.liveData.Manuscript = JSON.parse(this.$root.liveData.ProjectInfo.manuscript)
+                this.$root.ProjectState = JSON.parse(data.state)
             } else {
                 console.log("User Needs to load a project or create a new one")
-                this.$root.liveData.ProjectInfo = {};
+                this.$root.ProjectState.ProjectInfo = {};
             }
         });
-
     },
     render: h => h(App)
 }).$mount('#app')

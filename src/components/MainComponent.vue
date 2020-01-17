@@ -3,7 +3,7 @@
 
        <DefaultWelcome v-if="MySection===''"/>
 
-     <WritingTool v-if="MySection==='manuscript'"/>
+     <WritingTool v-if="MySection==='manuscripat'"/>
     <SettingsTool v-if="MySection==='settings'" />
     <TimelineTool v-if="MySection==='timeline'"  />
     <MindmapTool v-if="MySection==='mindmap'"  />
@@ -30,7 +30,7 @@ import DatabaseTool from './DatabaseTool/main'
 export default {
   computed : {
     MySection(){
-      return this.$root.liveData.Section
+      return this.$root.ProjectState.Section
     }
   },
   components:{

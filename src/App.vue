@@ -41,9 +41,9 @@ export default {
   computed :{
     ShowSection(){
       let action = "Loading"
-      console.log("Current Project Info" ,this.$root.liveData.ProjectInfo)
-      if(this.$root.liveData.ProjectInfo){
-        if(this.$root.liveData.ProjectInfo.id){
+      console.log("Current Project Info" ,this.$root.ProjectState.ProjectInfo)
+      if(this.$root.ProjectState.ProjectInfo){
+        if(this.$root.ProjectState.ProjectInfo.id){
           action = "Project"
         }else{
           action = "Create"
@@ -56,7 +56,7 @@ export default {
   methods:{
   },
   mounted(){
-
+    this.$vuetify.theme.dark = this.$store.state.Interface.darkmode;
   }
 };
 

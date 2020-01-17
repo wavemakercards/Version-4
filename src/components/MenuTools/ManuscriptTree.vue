@@ -1,25 +1,29 @@
 <style scoped>
-.sticky{
-position: sticky;
-top:0px;
-z-index: 999;
+.sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
 }
 </style>
 <template>
-<div>
-     <v-row class="sticky">
-          <v-col align="right"  >
-            <v-btn small text  @click="AddManuscriptTreeItem('folder')">
-              <v-icon>create_new_folder</v-icon>
-            </v-btn>
-            <v-btn small text  @click="AddManuscriptTreeItem('file')">
-              <v-icon>note_add</v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
+  <div>
+    <v-row class="sticky">
+      <v-col align="right">
+        <v-btn small text @click="AddManuscriptTreeItem('folder')">
+          <v-icon>create_new_folder</v-icon>
+        </v-btn>
+        <v-btn small text @click="AddManuscriptTreeItem('file')">
+          <v-icon>note_add</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
 
- <ManuscriptTreeItem v-model="this.$root.liveData.Manuscript" @input="ChangeDetected" @SelectedNode="SelectedNode"/>
-</div>
+    <ManuscriptTreeItem
+      v-model="this.$root.ProjectState.Manuscript"
+      @input="ChangeDetected"
+      @SelectedNode="SelectedNode"
+    />
+  </div>
 </template>
 
 <script>
@@ -29,69 +33,55 @@ export default {
   components: {
     ManuscriptTreeItem
   },
-   data(){
-    return{
-      MyData : {},
-      MyElements : [],
-  }  
-},
-methods : {
-  ChangeDetected(payload){
-    //console.log(payload)
-    this.$root.liveData.Manuscript = payload
-   this.saveData();
-  },
-  SelectedNode(payload){
-    // set it in the root variable - not using vuex I think!
-     this.$root.liveData.SelectedCard=payload;
-     this.saveData();
-  },
-  saveData(){
-        //console.log(payload)
-      this.$root.liveData.ProjectInfo.manuscript = JSON.stringify(this.MyElements);
-      this.$root.liveData.ProjectInfo.lastupdated = Date.now()
+  methods: {
+    ChangeDetected(payload) {
+      //console.log(payload)
+      this.$root.ProjectState.Manuscript = payload;
+      this.saveData();
+    },
+    SelectedNode(payload) {
+      console.log("BING",payload)
+      // set it in the root variable - not using vuex I think!
+      this.$root.ProjectState.SelectedCard = payload;
+      this.saveData();
+    },
+    saveData() {
+      //console.log(payload)
+      this.$root.ProjectState.ProjectInfo.lastupdated = Date.now();
+      this.$root.SaveProjectData();
+    },
+    AddManuscriptTreeItem(payload) {
+      let id = this.$root.uuid.v1();
+      let newObj = {
+        id: id,
+        icon: payload,
+        name: "New " + payload
+      };
+      if (payload === "folder") {
+        newObj.open = true;
+        newObj.elements = [];
+      }
 
-      this.$root.db.ProjectInfo.put(this.$root.liveData.ProjectInfo).then(function(updated) {
-        if (updated) {
-       // console.log("Save done");
+      if (this.$root.ProjectState.SelectedCard) {
+        if (this.$root.ProjectState.SelectedCard.icon === "folder") {
+          this.$root.ProjectState.SelectedCard.open = true;
+          this.$root.ProjectState.SelectedCard.elements.push(newObj);
         } else {
-         // console.log("Failed Save");
+          let pos = this.$root.FindNodeByID(
+            this.$root.ProjectState.SelectedCard.id,
+            this.$root.ProjectState.Manuscript
+          );
+          pos.parentObj.elements.splice(pos.index + 1, 0, newObj);
         }
-      });
-      },
-  AddManuscriptTreeItem(payload){   
-            let id = this.$root.uuid.v1()
-            let newObj = {
-                id: id,
-                icon: payload,
-                name: "New " + payload,
-            }
-            if (payload === "folder") {
-                newObj.open = true
-                newObj.elements = []
-            }
-
-            if (this.$root.liveData.SelectedCard) {
-                if (this.$root.liveData.SelectedCard.icon === "folder") {
-                    this.$root.liveData.SelectedCard.open = true
-                    this.$root.liveData.SelectedCard.elements.push(newObj)
-                } else {
-                    let pos = this.$root.FindNodeByID(this.$root.liveData.SelectedCard.id, this.$root.liveData.Manuscript)
-                    pos.parentObj.elements.splice(pos.index + 1, 0, newObj);
-                }
-            } else {
-               // console.log("DEFAULTING!")
-               this.$root.liveData.Manuscript.push(newObj)
-            }
-        // item Added so SAVE the project Info
-        this.saveData();
-  }
+      } else {
+        // console.log("DEFAULTING!")
+        this.$root.ProjectState.Manuscript.push(newObj);
+      }
+      // item Added so SAVE the project Info
+      this.saveData();
+    }
   },
- beforeMount() {
-  
-  }
-}
-
-
+  beforeMount() {}
+};
 </script>
 

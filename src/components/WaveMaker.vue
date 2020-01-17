@@ -51,11 +51,7 @@ export default {
   },
   data: () => ({
     drawer: null
-  }),
-  mounted() {
-    //   console.log("Mounting", this.$store.state)
-    this.$vuetify.theme.dark = this.$store.state.Interface.darkmode;
-  }
+  })
 };
 </script>
 <style scoped>

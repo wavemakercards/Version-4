@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{this.$root.liveData.Section}} Tool</h1>
+        <h1>{{this.$root.ProjectState.Section}} Tool</h1>
        
 
     </div>

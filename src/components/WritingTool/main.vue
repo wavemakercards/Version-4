@@ -3,9 +3,9 @@
 
       
 
-        <div v-if="this.$store.state.ManuscriptTree.ItemSelected">   
-        <TextSettings v-if="this.$store.state.ManuscriptTree.ItemSelected.icon === 'file'" />
-        <FolderSettings v-if="this.$store.state.ManuscriptTree.ItemSelected.icon === 'folder'" />
+        <div v-if="this.$root.ProjectState.SelectedCard">   
+        <TextSettings v-if="this.$root.ProjectState.SelectedCard.icon === 'file'" />
+        <FolderSettings v-if="this.$root.ProjectState.SelectedCard.icon === 'folder'" />
         </div>     
         <div v-else>
           Empty Manuscript - may well have a bunch o settings here

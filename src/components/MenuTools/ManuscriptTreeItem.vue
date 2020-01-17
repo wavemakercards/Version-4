@@ -7,7 +7,7 @@
     @input="emitter"
   >
     <div :key="el.id" v-for="(el, index) in realValue" >
-      <v-list-item link  :class="(el.id === isSelected.id)?'primary':''" >
+      <v-list-item link  :class="TagMe(el)" >
         <v-list-item-action v-if="el.icon==='folder' && !el.open" @click="el.open= !el.open">
             <v-icon>folder</v-icon>
           </v-list-item-action>
@@ -74,6 +74,15 @@ export default {
       console.log("click" , el)
      el.index = index
      this.$emit("SelectedNode", el);
+    },
+    TagMe(el){
+      let response =''
+      if(this.$root.ProjectState.SelectedCard){
+        if(el.id === this.$root.ProjectState.SelectedCard.id){
+        response ='primary'
+        }
+      }
+    return response
     }
   },
   components: {
@@ -94,7 +103,7 @@ export default {
       };
     },
     isSelected() {
-      return this.$root.liveData.SelectedCard
+      return this.$root.ProjectState.SelectedCard
     },
     // this.value when input = v-model
     // this.list  when input != v-model

@@ -24,9 +24,8 @@ export default {
          n.id = 1
          n.uuid = this.$root.uuid.v1()
          n.title = this.MyTitle
-         n.manuscript = JSON.stringify([]);
          n.lastupdated = Date.now()
-         this.$root.liveData.ProjectInfo = n
+         this.$root.ProjectState.ProjectInfo = n
          this.$root.SaveProjectData()
         }
     },

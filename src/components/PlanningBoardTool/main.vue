@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{this.$root.liveData.Section}} Tool</h1>
+    <h1>{{this.$root.ProjectState.Section}} Tool</h1>
     <v-container>
       <v-row v-if="tooldata.length >0">
         <v-col md-3 v-for="(item, index) in tooldata" :key="index">

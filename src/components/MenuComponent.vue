@@ -171,19 +171,20 @@ export default {
   },
     computed : {
         MySection(){
-          return this.$root.liveData.Section
+          return this.$root.ProjectState.Section
         }
     },
     methods : {
         SetSection(Sec){
           // clear the selected item
-          this.$root.liveData.SelectedCard = null
-            if (this.$root.liveData.Section===Sec){
+          this.$root.ProjectState.SelectedCard = null
+            if (this.$root.ProjectState.Section===Sec){
               // meh behaviour= //
-              this.$root.liveData.Section=  ''
+              this.$root.ProjectState.Section=  ''
             }else{
-                this.$root.liveData.Section=  Sec;
+                this.$root.ProjectState.Section=  Sec;
             }
+            this.$root.SaveProjectData()
         }
     },
     mounted(){
