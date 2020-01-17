@@ -45,12 +45,16 @@
 
               <MainComponent />
                   </v-content>
+
+           <!--       
                     <v-footer  app >
       <span class="consoleFeedback">Wavemaker  : </span>
    <v-btn small color="primary" dark><v-icon left small dense>verified_user</v-icon>Small Button</v-btn> 
    <v-btn small color="secondary" dark><v-icon left small>account_box</v-icon>Small Button</v-btn> 
    <v-btn small color="warning" dark><v-icon left small>save</v-icon>Small Button</v-btn>
     </v-footer>
+
+    -->
   </v-app>
 </template>
 

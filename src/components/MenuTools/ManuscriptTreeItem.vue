@@ -7,7 +7,7 @@
     @input="emitter"
   >
     <div :key="el.id" v-for="(el, index) in realValue" >
-      <v-list-item link @click="ItemClick(el, index)" :class="(el === isSelected)?'primary':''" >
+      <v-list-item link  :class="(el === isSelected)?'primary':''" >
         <v-list-item-action v-if="el.icon==='folder' && !el.open" @click="el.open= !el.open">
             <v-icon>folder</v-icon>
           </v-list-item-action>
@@ -21,7 +21,7 @@
           </v-list-item-action>
 
 
-          <v-list-item-content>
+          <v-list-item-content @click="ItemClick(el, index)">
             <v-list-item-title> {{ el.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
