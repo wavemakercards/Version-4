@@ -54,6 +54,8 @@ new Vue({
     },
     beforeMount() {
         this.$store.commit('initialiseStore'); //loading state from localstorage
+
+
         console.log("getting the data from the database")
         this.$root.db.ProjectInfo.get({
             id: 1
@@ -63,17 +65,10 @@ new Vue({
             //console.log(data)
             if (data) {
                 this.$root.liveData.ProjectInfo = data
-                    //console.log("MyData", this.MyData)
                 this.$root.liveData.Manuscript = JSON.parse(this.$root.liveData.ProjectInfo.manuscript)
             } else {
-                console.warn("NO PROJECT!")
+                console.log("User Needs to load a project or create a new one")
                 this.$root.liveData.ProjectInfo = {};
-                /*
-                this.MyData = {}
-                this.MyData.id = 1
-                this.MyData.uuid = this.$root.uuid.v1()
-                this.MyData.title = "Created by accident"
-                */
             }
         });
 

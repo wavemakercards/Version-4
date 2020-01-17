@@ -13,6 +13,8 @@ export const store = new Vuex.Store({
     mutations: {
         initialiseStore(state) {
             // gets the AppState from the database and replaces the state - allowing persistence
+            console.log("Getting App Settings")
+
             db.AppState.get({ id: 1 }).then((result) => {
                 return result;
             }).then(data => {
