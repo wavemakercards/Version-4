@@ -8,9 +8,36 @@ import TextareaAutosize from 'vue-textarea-autosize'
 Vue.use(TextareaAutosize)
 Vue.config.productionTip = false
 
+import db from "./DexieDB";
+import { uuid } from 'vue-uuid';
 new Vue({
     store,
     vuetify,
+    uuid,
+    data: () => ({
+        db
+    }),
+    methods: {
+        FindNodeByID: function(id, parentObj) {
+            let el = false
+            let arrtosearch = parentObj.elements
+            arrtosearch.some((element, index) => {
+                if (element.id === id) {
+                    // console.log("Match Found", id)
+                    el = {}
+                    el.parentObj = parentObj
+                    el.index = index
+                        //  console.log("result: ", el)
+                    return true
+                } else {
+                    if (element.elements && !el) {
+                        el = this.$root.FindNodeByID(id, element)
+                    }
+                }
+            });
+            return el
+        }
+    },
     beforeMount() {
         this.$store.commit('initialiseStore'); //loading state from localstorage
     },
