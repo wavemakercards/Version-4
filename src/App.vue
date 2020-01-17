@@ -21,18 +21,43 @@ html{
 
 <template>
   <v-app>
-   <Loading v-if="!this.$store.state.AppLoaded"/>
-   <WaveMaker v-if="this.$store.state.AppLoaded"/>
+   <Loading v-if="ShowSection ==='Loading' || !this.$store.state.AppLoaded"/>
+   <MainMenu v-if="ShowSection ==='Create'"/>
+   <WaveMaker v-if="ShowSection ==='Project'"/>
   </v-app>
 </template>
 
 <script>
-import Loading from "./Loading";
-import WaveMaker from "./WaveMaker";
+import Loading from "./components/Loading";
+import WaveMaker from "./components/WaveMaker";
+import MainMenu from "./components/MainMenu";
+
 export default {
   components: {
     Loading,
-    WaveMaker
+    WaveMaker,
+    MainMenu
+  },
+  computed :{
+    ShowSection(){
+      let action = "Loading"
+      console.log("Current Project Info" ,this.$root.liveData.ProjectInfo)
+      if(this.$root.liveData.ProjectInfo){
+        if(this.$root.liveData.ProjectInfo.id){
+          action = "Project"
+        }else{
+          action = "Create"
+        }
+      }
+      console.log("Chosen Action By APP " ,action)
+      return action
+    }
+  },
+  methods:{
+  },
+  mounted(){
+
   }
 };
+
 </script>

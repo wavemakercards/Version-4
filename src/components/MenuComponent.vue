@@ -171,20 +171,23 @@ export default {
   },
     computed : {
         MySection(){
-          return this.$store.state.MenuOptions.section
+          return this.$root.liveData.Section
         }
     },
     methods : {
         SetSection(Sec){
           // clear the selected item
-          this.$store.dispatch("ManuscriptTreeItemSelected", null);
-            if (this.MySection===Sec){
+          this.$root.liveData.SelectedCard = null
+            if (this.$root.liveData.Section===Sec){
               // meh behaviour= //
-             //  this.$store.dispatch("MenuSetSection", '');  
+              this.$root.liveData.Section=  ''
             }else{
-              this.$store.dispatch("MenuSetSection", Sec);
+                this.$root.liveData.Section=  Sec;
             }
         }
+    },
+    mounted(){
+      console.log("Loading Menu", this.$root)
     }
 }
 </script>

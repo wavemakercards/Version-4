@@ -1,16 +1,16 @@
 <template>
    <div>
 
-       <DefaultWelcome v-if="myStore.MenuOptions.section===''"/>
+       <DefaultWelcome v-if="MySection===''"/>
 
-     <WritingTool v-if="myStore.MenuOptions.section==='manuscript'"/>
-    <SettingsTool v-if="myStore.MenuOptions.section==='settings'" />
-    <TimelineTool v-if="myStore.MenuOptions.section==='timeline'"  />
-    <MindmapTool v-if="myStore.MenuOptions.section==='mindmap'"  />
-    <PlanningBoardTool v-if="myStore.MenuOptions.section==='planningboard'"  />
-    <ExportTool v-if="myStore.MenuOptions.section==='export'"  />
-    <DatabaseTool v-if="myStore.MenuOptions.section==='database'"  />
-    <SnowflakeTool v-if="myStore.MenuOptions.section==='snowflake'"  />
+     <WritingTool v-if="MySection==='manuscript'"/>
+    <SettingsTool v-if="MySection==='settings'" />
+    <TimelineTool v-if="MySection==='timeline'"  />
+    <MindmapTool v-if="MySection==='mindmap'"  />
+    <PlanningBoardTool v-if="MySection==='planningboard'"  />
+    <ExportTool v-if="MySection==='export'"  />
+    <DatabaseTool v-if="MySection==='database'"  />
+    <SnowflakeTool v-if="MySection==='snowflake'"  />
 
  
       
@@ -29,8 +29,8 @@ import ExportTool from './ExportTool/main'
 import DatabaseTool from './DatabaseTool/main'
 export default {
   computed : {
-    myStore(){
-      return this.$store.state;
+    MySection(){
+      return this.$root.liveData.Section
     }
   },
   components:{

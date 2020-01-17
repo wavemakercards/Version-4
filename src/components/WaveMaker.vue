@@ -2,7 +2,6 @@
   <v-app>
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon @click="drawer = !drawer">
-        <!--
         <svg id="svg6" version="1.1" viewBox="0 0 24 24" height="24" width="24">
           <defs id="defs10" />
           <path id="path2" d="M0 0h24v24H0V0z" fill="none" />
@@ -21,40 +20,24 @@
             </g>
           </g>
         </svg>
-        -->
-        <v-icon>menu</v-icon>
       </v-app-bar-nav-icon>
 
       <span class="title ml-3 mr-5">
-         app<span class="font-weight-light">x</span> 
-        <!--
-        wave<span class="font-weight-light">maker</span> 
-        -->
+        wave
+        <span class="font-weight-light">maker</span>
       </span>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
-
-<MenuComponent />
-
+        <MenuComponent />
       </v-list>
     </v-navigation-drawer>
 
-                  <v-content>
+    <v-content>
+      <MainComponent />
+    </v-content>
 
-              <MainComponent />
-                  </v-content>
-
-           <!--       
-                    <v-footer  app >
-      <span class="consoleFeedback">Wavemaker  : </span>
-   <v-btn small color="primary" dark><v-icon left small dense>verified_user</v-icon>Small Button</v-btn> 
-   <v-btn small color="secondary" dark><v-icon left small>account_box</v-icon>Small Button</v-btn> 
-   <v-btn small color="warning" dark><v-icon left small>save</v-icon>Small Button</v-btn>
-    </v-footer>
-
-    -->
   </v-app>
 </template>
 
@@ -67,18 +50,18 @@ export default {
     MainComponent
   },
   data: () => ({
-    drawer: null,
+    drawer: null
   }),
-  mounted(){
- //   console.log("Mounting", this.$store.state)
-    this.$vuetify.theme.dark = this.$store.state.Interface.darkmode
+  mounted() {
+    //   console.log("Mounting", this.$store.state)
+    this.$vuetify.theme.dark = this.$store.state.Interface.darkmode;
   }
 };
 </script>
 <style scoped>
-.consoleFeedback{
-  font-family:'Courier New', Courier, monospace;
-  font-size:  0.7rem;
-  letter-spacing: 0.1rem
+.consoleFeedback {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1rem;
 }
 </style>
