@@ -19,7 +19,7 @@
 
 <script>
 import FolderSettings from "./FolderSettings"
-import TextEditor from "./TextEditor"
+import TextEditor from "../Editors/TextEditor"
 export default {
     components : {
         FolderSettings,
