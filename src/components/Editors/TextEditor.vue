@@ -1,18 +1,19 @@
 <template>
   <div>
     <v-container>
+     
       <v-row>
-        <v-col cols="12">
-          <v-text-field v-model="myEl.name" label="file Name" @keyup="trg()"></v-text-field>
+        <v-col cols="10">
+          <v-text-field v-model="myEl.name" label="File Name" @keyup="trg()"></v-text-field>
         </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="12">
-          <textarea class="editor" v-model="BodyText" placeholder="Write here" @keyup="SaveMyText"></textarea>
+        <v-col  cols="2" class="text-center">
+          <v-btn color="primary" @click="showPrefs=!showPrefs" fab  dark><v-icon >settings</v-icon></v-btn>
         </v-col>
+         
       </v-row>
-      <v-row>
-        <v-row>
+
+ <div v-if="showPrefs" >
+<v-row>
           <v-col cols="12" class="text-right">
             <v-dialog v-model="dialog" persistent max-width="290">
               <template v-slot:activator="{ on }">
@@ -33,7 +34,18 @@
             </v-dialog>
           </v-col>
         </v-row>
+      </div>
+
+
+<div v-if="!showPrefs">
+
+      <v-row>
+        <v-col cols="12">
+          <textarea class="editor" v-model="BodyText" placeholder="Write here" @keyup="SaveMyText"></textarea>
+        </v-col>
       </v-row>
+        
+    </div>
     </v-container>
   </div>
 </template>
@@ -45,12 +57,12 @@ export default {
     return {
       dialog: false,
       BodyText: "",
-      current: null
+showPrefs : false,
+
     };
   },
   mounted() {
-    if (this.current != this.myEl.uuid) {
-      this.current = this.myEl.uuid;
+
       console.log("mounting editor", this.myEl.uuid);
       let searchObj = {};
       searchObj.uuid = this.myEl.uuid;
@@ -65,10 +77,9 @@ export default {
             this.BodyText = data.body;
           } else {
             this.BodyText = "";
-            console.log("Selected Item not in DB shoule be a No No");
+            console.log("Selected Item not in DB shoule be a No No?");
           }
         });
-    }
   },
   methods: {
     SaveMyText() {
