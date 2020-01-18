@@ -18,6 +18,21 @@ html{
 ::-webkit-scrollbar-thumb {
   background-color: var(--wm-editor-scrollbar-fg);
 }
+/*
+Manuscript css class this will be user editable eventually
+*/
+.manuscriptCSS img{
+  max-width:100%;
+  margin:0 auto;
+}
+
+.manuscriptCSS code{
+  display: block;
+  padding: 20px;
+  width:100%;
+}
+
+
 </style>
 
 <template>
@@ -25,7 +40,7 @@ html{
    <Loading v-if="ShowSection ==='Loading' || !this.$store.state.AppLoaded"/>
    <MainMenu v-if="ShowSection ==='Create'"/>
    <WaveMaker v-if="ShowSection ==='Project'"/>
-   <pre>{{this.$root.ProjectState}}</pre>
+
   </v-app>
 </template>
 

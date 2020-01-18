@@ -1,10 +1,17 @@
 <template>
-  <div>
-    <h1>{{this.$root.ProjectState.Section}} Tool</h1>
+  <div> 
     <v-container>
+      
+        <v-row>
+          <v-col>
+            <v-text-field flat hide-details label="Search" prepend-inner-icon="search" />
+          </v-col>
+        </v-row>
+
+
       <v-row v-if="database.length >0">
-        <v-col md-3 v-for="(item, index) in database" :key="index">
-          <v-card height="100%">
+        <v-col class="col-12 col-sm-6 col-md-4 col-xl-3 " v-for="(item, index) in database" :key="index">
+          <v-card height="100%" class="manuscriptCSS">
             <v-list-item>
                 <!--
               <v-list-item-avatar color="grey"></v-list-item-avatar>
@@ -17,9 +24,7 @@
                 <v-list-item-subtitle>{{item.meta}}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-<!--
-            <v-img src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg" height="194"></v-img>
---><div style="padding:10px">
+<div style="padding:10px">
             <v-card-text v-html="item.body" style="height:200px; overflow-y:scroll;"></v-card-text>
 </div>
             <v-card-actions>

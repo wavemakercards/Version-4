@@ -23,8 +23,7 @@
       </v-app-bar-nav-icon>
 
       <span class="title ml-3 mr-5">
-        wave
-        <span class="font-weight-light">maker</span>
+        <span class="font-weight-light">Wave</span>Maker
       </span>
     </v-app-bar>
 

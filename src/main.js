@@ -9,6 +9,15 @@ import db from "./DexieDB";
 import {
     uuid
 } from 'vue-uuid';
+
+import { TiptapVuetifyPlugin } from "tiptap-vuetify";
+// don't forget to import styles
+import "tiptap-vuetify/dist/main.css";
+
+Vue.use(TiptapVuetifyPlugin, {
+  vuetify
+});
+
 new Vue({
     store,
     vuetify,
