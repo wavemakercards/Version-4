@@ -35,7 +35,6 @@
 
       <div v-if="!showPrefs">
         <v-row>
-          <button @click="nlp">NLP</button>
           <v-col cols="12" class="manuscriptCSS">
           <tiptap-vuetify v-model="content" :extensions="extensions" :toolbar-attributes="toolbarAttrs"  placeholder="Write something …" @change="SaveMyText"/>
           </v-col>
@@ -46,14 +45,12 @@
 </template>
 
 <script>
-import stopword from 'stopword'
+//import stopword from 'stopword'
 // converts the html to plain text (html cleanup)
 import html2text from 'html-to-text'
 // stop word clean up (multi Language)
 // natural language support
-//import nlp from 'compromise'
-
-
+import nlp from 'compromise'
 import {
   // component
   TiptapVuetify,
@@ -153,45 +150,6 @@ mounted(){
         command({ src });
       }
     },
-    nlp(){
-      console.log("running NLP")
-
-          let cleantext = html2text.fromString(this.content)
-     //   console.log("Plain Text", cleantext)
-
-// remove all punctuation
-cleantext = cleantext.replace(/[^\w\s]|_/g, "")
-         .replace(/\s+/g, " ");
-
-let arr= stopword.removeStopwords(cleantext.split(' '))
-let x = {}
-arr.forEach(element => {
-  let count = 1;
-  if(x[element]){
-  x[element] = x[element]+1
-  }else{
-x[element] = count
-  }
-});
-console.log(x)
-
-    /*     
-    // this was nice experiment in using compromise but text too large
-let doc = nlp(cleantext)
-let arr= doc.people().json()
-let x = {}
-arr.forEach(element => {
-  let count = 1;
-  if(x[element.text]){
-  x[element.text] = x[element.text]+1
-  }else{
-x[element.text] = count
-  }
-});
-console.log(x)
-*/
-    },
-
     SaveMyText() {
       let data = {};
       data.uuid = this.myEl.uuid;
@@ -201,6 +159,22 @@ console.log(x)
       data.body = this.content;
       data.lastupdated = Date.now();
      // console.log("Saving data ", data);
+
+          let cleantext = html2text.fromString(this.content)
+     //   console.log("Plain Text", cleantext)
+      // console.log(stopword.removeStopwords(cleantext.split(' ')))
+
+let doc = nlp(cleantext)
+let arr= doc.topics().json()
+let x = {}
+arr.forEach(element => {
+  console.log(element)
+      x[element.text] = x[element.text] + 1
+});
+
+console.log(x)
+
+
       this.$root.db.FileCards.put(data).then(function(updated) {
         if (updated) {
           console.log("Cool updated!");
@@ -238,8 +212,6 @@ console.log(x)
   width:100%;
   margin:0 auto;
 }
-
-
 
 
 .editorFrame{

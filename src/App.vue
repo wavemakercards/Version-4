@@ -24,6 +24,7 @@ Manuscript css class this will be user editable eventually
 .manuscriptCSS img{
   max-width:100%;
   margin:0 auto;
+  display: block;
 }
 
 .manuscriptCSS code{
