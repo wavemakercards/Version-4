@@ -13,7 +13,7 @@
   <span v-if="item.title===''">NO TiTLE</span>  > {{item.title}}
 </div>
         </div>
-        <div v-else>
+        <div v-else style="width:100px">
        <v-progress-linear
       indeterminate
       color="yellow darken-2"

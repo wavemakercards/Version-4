@@ -23,7 +23,6 @@
       <div v-if="!showPrefs">
         <v-row>
           <v-col cols="12" class="manuscriptCSS">
-            <v-text-field v-model="myEl.name" label="File Name" @keyup="trg()"></v-text-field>
             <tiptap-vuetify
               v-model="content"
               :extensions="extensions2"
@@ -195,14 +194,7 @@ export default {
         }
       });
     },
-    DeleteItem() {
-      this.dialog = false;
-      this.$root.DeleteManuscriptItem();
-    },
-    trg() {
-      this.$root.ProjectState.SelectedCard.name = this.myEl.name;
-      this.$root.SaveProjectData();
-    }
+  
   }
 };
 </script>
