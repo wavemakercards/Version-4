@@ -64,6 +64,7 @@ new Vue({
             this.$root.SaveProjectData()
         },
         SaveProjectData() {
+            console.log("SaveProjectData")
             let MYstate = { id: 1, state: JSON.stringify(this.$root.ProjectState), lastupdated: Date.now() }
             this.$root.db.ProjectState.put(MYstate).then(function(updated) {
                 if (updated) {

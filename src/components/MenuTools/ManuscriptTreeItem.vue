@@ -70,8 +70,8 @@ export default {
   name: "ManuscriptTreeItem",
   methods: {
     emitter(value) {
-
-      this.$emit("input", value);
+    console.log("Emitting", value)
+    this.$emit("input", value);
     },
     itemclick(el, index) {
      el.index = index;

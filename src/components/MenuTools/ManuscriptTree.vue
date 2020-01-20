@@ -19,7 +19,7 @@
     </v-row>
 
     <ManuscriptTreeItem
-      v-model="this.$root.ProjectState.Manuscript.elements"
+      v-model="TreeContents"
       @input="ChangeDetected"
     />
   </div>
@@ -32,10 +32,24 @@ export default {
   components: {
     ManuscriptTreeItem
   },
+  computed: {
+    TreeContents:{
+       // getter
+    get: function () {
+      return this.$root.ProjectState.Manuscript.elements
+    },
+    // setter
+    set: function (newValue) {
+       this.$root.ProjectState.Manuscript.elements =newValue
+        this.$root.SaveProjectData();
+    }
+    } 
+  },
   methods: {
     ChangeDetected(payload) {
-      this.$root.ProjectState.Manuscript.elements = payload;
-   this.$root.SaveProjectData();
+      console.log("payload" ,payload)
+      this.TreeContents = payload;
+     
     },
     AddManuscriptTreeItem(payload) {
       let uuid = this.$root.uuid.v1();
