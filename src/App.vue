@@ -2,21 +2,20 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap");
 
 html{
-  overflow-y: auto !important;
+  overflow-y: scroll !important;
   overflow-x: none; 
 }
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+ 
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  background-color: var(--wm-editor-scrollbar-bg);
+  width: 10px;
+  background-color:#868686;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--wm-editor-scrollbar-fg);
+  background-color: #646464;
 }
 /*
 Manuscript css class this will be user editable eventually
