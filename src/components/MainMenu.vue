@@ -28,9 +28,6 @@ export default {
          this.$root.ProjectState.ProjectInfo = n
          this.$root.SaveProjectData()
         }
-    },
-    mounted(){
-        console.log("MainMEnu.vue mounted")
     }
 }
 </script>

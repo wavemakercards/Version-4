@@ -186,9 +186,6 @@ export default {
             }
             this.$root.SaveProjectData()
         }
-    },
-    mounted(){
-      console.log("Loading Menu", this.$root)
     }
 }
 </script>

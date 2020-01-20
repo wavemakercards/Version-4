@@ -13,13 +13,12 @@ export const store = new Vuex.Store({
     mutations: {
         initialiseStore(state) {
             // gets the AppState from the database and replaces the state - allowing persistence
-            console.log("Getting App Settings")
+
 
             db.AppState.get({ id: 1 }).then((result) => {
                 return result;
             }).then(data => {
                 if (data) {
-                    console.log("Store Initialised", data)
                     this.replaceState(
                         Object.assign(state, JSON.parse(data.state))
                     )
@@ -32,13 +31,11 @@ export const store = new Vuex.Store({
             // path is array of path from root state 
             // value is value .... duh
             if (payload.path.length < 1) {
-                //console.log("No Valid Path Provided")
                 return false
             }
             let stateTarget = state
             let path = payload.path
             path.forEach((element, index) => {
-                //console.log("last", index === (path.length - 1))
                 if (index === (path.length - 1)) {
                     stateTarget[element] = payload.value
                 } else {
@@ -63,7 +60,6 @@ export const store = new Vuex.Store({
 })
 
 store.subscribe((mutation, state) => {
-    console.log("Saving State")
     if (state.AppLoaded) {
         // Store the state object in the Database AppState Table
         // but only if the LOAD has been done
@@ -71,9 +67,9 @@ store.subscribe((mutation, state) => {
             .put({ id: 1, state: JSON.stringify(state) })
             .then(function(updated) {
                 if (updated) {
-                    //console.log("Cool updated!");
+                    //Cool updated!");
                 } else {
-                    console.log("Tits Up");
+                    //Tits Up");
                 }
             });
     }

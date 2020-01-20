@@ -135,11 +135,11 @@ mounted(){
               return result;
             })
             .then(data => {
-              console.log("Loaded ", data);
+           
               if (data) {
                 this.content = data.body;
               } else {
-                console.log("Selected Item not in DB shoule be a No No?");
+              //Selected Item not in DB shoule be a No No?");
               }
             });
 },
@@ -158,28 +158,26 @@ mounted(){
       data.meta = "LATER";
       data.body = this.content;
       data.lastupdated = Date.now();
-     // console.log("Saving data ", data);
+
 
           let cleantext = html2text.fromString(this.content)
-     //   console.log("Plain Text", cleantext)
-      // console.log(stopword.removeStopwords(cleantext.split(' ')))
+ 
 
 let doc = nlp(cleantext)
 let arr= doc.topics().json()
 let x = {}
 arr.forEach(element => {
-  console.log(element)
       x[element.text] = x[element.text] + 1
 });
 
-console.log(x)
+
 
 
       this.$root.db.FileCards.put(data).then(function(updated) {
         if (updated) {
-          console.log("Cool updated!");
+         //Cool updated!");
         } else {
-          // console.log("Failed Save");
+          // ailed Save");
         }
       });
     },

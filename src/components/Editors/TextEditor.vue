@@ -138,11 +138,10 @@ mounted(){
               return result;
             })
             .then(data => {
-              console.log("Loaded ", data);
               if (data) {
                 this.content = data.body;
               } else {
-                console.log("Selected Item not in DB shoule be a No No?");
+               //Selected Item not in DB shoule be a No No?");
               }
             });
 },
@@ -154,10 +153,8 @@ mounted(){
       }
     },
     nlp(){
-      console.log("running NLP")
-
-          let cleantext = html2text.fromString(this.content)
-     //   console.log("Plain Text", cleantext)
+            let cleantext = html2text.fromString(this.content)
+  
 
 // remove all punctuation
 cleantext = cleantext.replace(/[^\w\s]|_/g, "")
@@ -173,23 +170,7 @@ arr.forEach(element => {
 x[element] = count
   }
 });
-console.log(x)
 
-    /*     
-    // this was nice experiment in using compromise but text too large
-let doc = nlp(cleantext)
-let arr= doc.people().json()
-let x = {}
-arr.forEach(element => {
-  let count = 1;
-  if(x[element.text]){
-  x[element.text] = x[element.text]+1
-  }else{
-x[element.text] = count
-  }
-});
-console.log(x)
-*/
     },
 
     SaveMyText() {
@@ -200,12 +181,12 @@ console.log(x)
       data.meta = "LATER";
       data.body = this.content;
       data.lastupdated = Date.now();
-     // console.log("Saving data ", data);
+
       this.$root.db.FileCards.put(data).then(function(updated) {
         if (updated) {
-          console.log("Cool updated!");
+          //Cool updated!");
         } else {
-          // console.log("Failed Save");
+          //Failed Save");
         }
       });
     },

@@ -51,7 +51,6 @@ export default {
   updated() {
     if (this.current != this.myEl.uuid) {
       this.current = this.myEl.uuid;
-      console.log("mounting editor", this.myEl.uuid);
       let searchObj = {};
       searchObj.uuid = this.myEl.uuid;
       this.$root.db.FileCards.get(searchObj)
@@ -59,13 +58,10 @@ export default {
           return result;
         })
         .then(data => {
-          console.log("Loaded ", data);
           if (data) {
-            console.log(data);
             this.BodyText = data.body;
           } else {
             this.BodyText = "";
-            console.log("Selected Item not in DB shoule be a No No");
           }
         });
     }
@@ -79,12 +75,12 @@ export default {
       data.meta = "LATER";
       data.body = this.BodyText;
       data.lastupdated = Date.now();
-      console.log("Saving data ", data);
+
       this.$root.db.FileCards.put(data).then(function(updated) {
         if (updated) {
-          console.log("Cool updated!");
+         //Cool updated!");
         } else {
-          // console.log("Failed Save");
+          // "Failed Save");
         }
       });
     },

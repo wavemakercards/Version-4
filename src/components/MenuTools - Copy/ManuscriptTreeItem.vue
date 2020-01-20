@@ -67,11 +67,9 @@ export default {
   name: "ManuscriptTreeItem",
   methods: {
     emitter(value) {
-      // console.log("input", value);
       this.$emit("input", value);
     },
     ItemClick(el, index) {
-     // console.log("realValue", realValue)
      el.index = index
       this.$store.dispatch("ManuscriptTreeItemSelected", el);
     }

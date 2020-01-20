@@ -65,9 +65,9 @@ export default {
         
       this.$root.db.Mindmaps.put(newObj).then(function(updated) {
         if (updated) {
-        console.log("Save done");
+       //Save done");
         } else {
-         // console.log("Failed Save");
+         // Failed Save");
         }
       });
       }
@@ -75,7 +75,6 @@ export default {
   beforeMount() {
     let p = this.$root.db.Mindmaps.toArray();
     p.then((d)=>{
-          console.log(d)
          this.tooldata = d
     })
   

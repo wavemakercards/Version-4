@@ -27,21 +27,7 @@ export default {
     trg() {
       this.$store.commit("triggersave");
     }
-  },
-    beforeMount() {
-    console.log(this.myEl);
-    /*
-    db.FileCards.get({ uuid: this.myEl.id })
-      .then(result => {
-        return result;
-      })
-      .then(data => {
-        if (data) {
-          console.log(data);
-        }
-      });
-      */
-  },
+  }
 };
 </script>
 

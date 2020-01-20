@@ -244,11 +244,10 @@ export default {
         return result;
       })
       .then(data => {
-        console.log("Loaded ", data);
         if (data) {
           this.editor.setContent(data.body);
         } else {
-          console.log("Selected Item not in DB shoule be a No No?");
+        // not in DB??
         }
       });
 
@@ -277,12 +276,12 @@ export default {
       data.meta = "LATER";
       data.body = myHtml;
       data.lastupdated = Date.now();
-      console.log("Saving data ", data);
+
       this.$root.db.FileCards.put(data).then(function(updated) {
         if (updated) {
-          console.log("Cool updated!");
+          // Cool updated!");
         } else {
-          // console.log("Failed Save");
+          // Failed Save");
         }
       });
     },

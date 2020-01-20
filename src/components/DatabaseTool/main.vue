@@ -56,8 +56,7 @@ export default {
   beforeMount() {
     let p = this.$root.db.FileCards.toArray();
     p.then((d)=>{
-          console.log(d)
-         this.database = d
+             this.database = d
     })
   
   }

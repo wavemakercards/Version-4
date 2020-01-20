@@ -59,7 +59,6 @@ export default {
   computed :{
     ShowSection(){
       let action = "Loading"
-      console.log("Current Project Info" ,this.$root.ProjectState.ProjectInfo)
       if(this.$root.ProjectState.ProjectInfo){
         if(this.$root.ProjectState.ProjectInfo.id){
           action = "Project"
@@ -67,7 +66,6 @@ export default {
           action = "Create"
         }
       }
-      console.log("Chosen Action By APP " ,action)
       return action
     }
   },

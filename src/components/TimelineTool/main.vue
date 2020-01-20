@@ -62,19 +62,19 @@ export default {
       SaveToolData(newObj){
       this.$root.db.Timelines.put(newObj).then(function(updated) {
         if (updated) {
-          //console.log("Cool updated!");
+          //Cool updated!");
         } else {
-         // console.log("Failed Save");
+         // Failed Save");
         }
       });
       }
   },
   beforeMount() {
-    console.log(this)
+ 
 
     let p = this.$root.db.Timelines.toArray();
     p.then((d)=>{
-          console.log(d)
+     
          this.tooldata = d
     })
   

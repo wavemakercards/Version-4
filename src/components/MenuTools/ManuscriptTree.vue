@@ -19,7 +19,7 @@
     </v-row>
 
     <ManuscriptTreeItem
-      v-model="this.$root.ProjectState.Manuscript"
+      v-model="this.$root.ProjectState.Manuscript.elements"
       @input="ChangeDetected"
     />
   </div>
@@ -34,8 +34,7 @@ export default {
   },
   methods: {
     ChangeDetected(payload) {
-      //console.log(payload)
-      this.$root.ProjectState.Manuscript = payload;
+      this.$root.ProjectState.Manuscript.elements = payload;
    this.$root.SaveProjectData();
     },
     AddManuscriptTreeItem(payload) {
@@ -59,11 +58,10 @@ export default {
             this.$root.ProjectState.SelectedCard.uuid,
             this.$root.ProjectState.Manuscript
           );
-          pos.parentObj.elements.splice(pos.index + 1, 0, newObj);
+         pos.parentObj.elements.splice(pos.index + 1, 0, newObj);
         }
       } else {
-        // console.log("DEFAULTING!")
-        this.$root.ProjectState.Manuscript.push(newObj);
+        this.$root.ProjectState.Manuscript.elements.push(newObj);
       }
       // item Added so SAVE the project Info
   this.$root.SaveProjectData();
