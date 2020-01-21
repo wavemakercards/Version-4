@@ -42,14 +42,14 @@
             <v-text-field flat hide-details label="Search" prepend-inner-icon="search" />
           </v-col>
         </v-row>
- -->
+
  <v-expand-transition>
 <div v-if="MySection==='manuscript'" >
 <ManuscriptTree />
    <v-divider />
 </div>
  </v-expand-transition>
-  
+   -->
   
 
         <v-list-item link @click="SetSection('timeline')" v-bind:class="{ accent: MySection ==='timeline' }">
@@ -163,11 +163,11 @@
 </template>
 
 <script>
-import ManuscriptTree from "./MenuTools/ManuscriptTree";
+//import ManuscriptTree from "./MenuTools/ManuscriptTree";
 
 export default {
   components: {
-    ManuscriptTree
+   // ManuscriptTree
   },
     computed : {
         MySection(){

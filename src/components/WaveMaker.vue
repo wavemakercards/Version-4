@@ -26,9 +26,10 @@
      <!--   <span class="font-weight-light">Wave</span>Maker -->
       </span>
     </v-app-bar>
-
+    <!-- mini-variant.sync="mini" -->
     <v-navigation-drawer v-model="drawer" app clipped
-    :mini-variant.sync="mini"
+
+      :mini-variant="true"
     >
       <v-list dense>
         <MenuComponent />

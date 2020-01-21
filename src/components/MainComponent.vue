@@ -1,22 +1,16 @@
 <template>
    <div>
-
-       <DefaultWelcome v-if="MySection===''"/>
-
-     <WritingTool v-if="MySection==='manuscript'"/>
+    <DefaultWelcome v-if="MySection===''"/>
+    <WritingTool v-if="MySection==='manuscript'"/>
     <SettingsTool v-if="MySection==='settings'" />
     <TimelineTool v-if="MySection==='timeline'"  />
     <MindmapTool v-if="MySection==='mindmap'"  />
     <PlanningBoardTool v-if="MySection==='planningboard'"  />
     <ExportTool v-if="MySection==='export'"  />
     <DatabaseTool v-if="MySection==='database'"  />
-    <SnowflakeTool v-if="MySection==='snowflake'"  />
-
- 
-      
-    </div>
+    <SnowflakeTool v-if="MySection==='snowflake'"  />    
+  </div>
 </template>
-
 <script>
 import DefaultWelcome from './DefaultWelcome/main'
 import SettingsTool from './SettingsTool/main'
