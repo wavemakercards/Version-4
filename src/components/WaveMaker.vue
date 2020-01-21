@@ -27,7 +27,9 @@
       </span>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" app clipped>
+    <v-navigation-drawer v-model="drawer" app clipped
+    :mini-variant.sync="mini"
+    >
       <v-list dense>
         <MenuComponent />
       </v-list>
@@ -49,7 +51,8 @@ export default {
     MainComponent
   },
   data: () => ({
-    drawer: null
+    drawer: null,
+    mini: true
   })
 };
 </script>
