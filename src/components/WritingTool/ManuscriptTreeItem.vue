@@ -8,11 +8,11 @@
   >
     <div :key="el.uuid" v-for="(el, index) in realValue" >
       <v-list-item link  :class="TagMe(el)" >
-        <v-list-item-action v-if="el.icon==='folder' && !el.open" @click="el.open= !el.open">
+        <v-list-item-action v-if="el.icon==='folder' && !el.open" @click.native="el.open= !el.open">
             <v-icon>folder</v-icon>
           </v-list-item-action>
 
-           <v-list-item-action v-if="el.icon==='folder' && el.open" @click="el.open= !el.open">
+           <v-list-item-action v-if="el.icon==='folder' && el.open" @click.native="el.open= !el.open">
             <v-icon>folder_open</v-icon>
           </v-list-item-action>
 
@@ -21,7 +21,7 @@
           </v-list-item-action>
 
 
-          <v-list-item-content @click="itemclick(el, index)">
+          <v-list-item-content @click.native="itemclick(el, index)">
             <v-list-item-title> {{ el.name }}</v-list-item-title>           
           </v-list-item-content>
            <v-list-item-action v-if="el.hidden" >
