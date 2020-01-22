@@ -1,6 +1,7 @@
 <template>
-  <v-app>
-    <v-app-bar app clipped-left>
+  <div>
+
+    <v-app-bar app clipped-left flat>
       <v-app-bar-nav-icon @click="drawer = !drawer">
         <svg id="svg6" version="1.1" viewBox="0 0 24 24" height="24" width="24">
           <defs id="defs10" />
@@ -28,8 +29,8 @@
     </v-app-bar>
     <!-- mini-variant.sync="mini" -->
     <v-navigation-drawer v-model="drawer" app clipped
-
       :mini-variant="true"
+      mini-variant-width="50"
     >
       <v-list dense>
         <MenuComponent />
@@ -39,8 +40,7 @@
     <v-content>
       <MainComponent />
     </v-content>
-
-  </v-app>
+  </div>
 </template>
 
 <script>

@@ -1,42 +1,44 @@
 <style >
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap");
-
-html{
+html {
   overflow-y: scroll !important;
-  overflow-x: none; 
+  overflow-x: none;
 }
+
 ::-webkit-scrollbar-track {
- 
+  min-width: 1px;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
-  background-color:#868686;
+  background-color: #868686;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #646464;
 }
+
 /*
 Manuscript css class this will be user editable eventually
 */
-.manuscriptCSS img{
-  max-width:100%;
-  margin:0 auto;
-  display: block;
-}
 
-.manuscriptCSS code{
-  display: block;
-  padding: 20px;
-  width:100%;
-}
+ .manuscriptCSS img {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .manuscriptCSS code {
+    display: block;
+    padding: 20px;
+    width: 100%;
+  }
 
 
 </style>
 
 <template>
-  <v-app>
+  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
    <Loading v-if="ShowSection ==='Loading' || !this.$store.state.AppLoaded"/>
    <MainMenu v-if="ShowSection ==='Create'"/>
    <WaveMaker v-if="ShowSection ==='Project'"/>
@@ -56,6 +58,9 @@ export default {
     MainMenu
   },
   computed :{
+      theme(){
+      return (this.$vuetify.theme.dark) ? 'dark' : 'light'
+    },
     ShowSection(){
       let action = "Loading"
       if(this.$root.ProjectState.ProjectInfo){
@@ -71,7 +76,7 @@ export default {
   methods:{
   },
   mounted(){
-    this.$vuetify.theme.dark = this.$store.state.Interface.darkmode;
+   // this.$vuetify.theme.dark = this.$store.state.Interface.darkmode;
   }
 };
 
