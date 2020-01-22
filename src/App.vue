@@ -38,7 +38,11 @@ Manuscript css class this will be user editable eventually
 </style>
 
 <template>
-  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
+<!--
+add this to v-app to get the background to change
+:style="{background: $vuetify.theme.themes[theme].background}"
+ -->
+  <v-app >
    <Loading v-if="ShowSection ==='Loading' || !this.$store.state.AppLoaded"/>
    <MainMenu v-if="ShowSection ==='Create'"/>
    <WaveMaker v-if="ShowSection ==='Project'"/>
