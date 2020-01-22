@@ -11,10 +11,12 @@ export default new Vuetify({
     theme: {
         themes: {
             light: {
-                background: colors.grey.lighten2, // Not automatically applied
+                primary: colors.primary
+                    //     background: colors.grey.lighten2, // Not automatically applied
             },
             dark: {
-                background: colors.grey.darken2, // If not using lighten/darken, use base to return hex
+                primary: colors.primary
+                    //   background: colors.grey.darken2, // If not using lighten/darken, use base to return hex
             },
         },
     },
