@@ -1,40 +1,16 @@
 <template>
 <div>
- 
-    <!-- mini-variant.sync="mini" -->
-    <v-navigation-drawer v-model="drawer" absolute   >
-       <v-btn fab small text @click="drawer = !drawer"><v-icon>menu</v-icon></v-btn> Story
-     
+     <v-navigation-drawer v-model="drawer" class="ManuscriptBar"   >
       <v-list dense>
-
-       <ManuscriptTree />
+       <ManuscriptTree  />
       </v-list>
     </v-navigation-drawer>
 
-  <v-btn fab small text  @click="drawer = !drawer"><v-icon>menu</v-icon></v-btn>
+  <v-btn fab small text @click="drawer = !drawer"  class="folderButton"><v-icon>folder_special</v-icon></v-btn>
+
+
  <div class="mainc" :class="{ inset: drawer }">
     <div v-if="this.$root.ProjectState.SelectedCard"> 
-        <v-text-field v-model="MyNodeElementName" label="File Name" ></v-text-field>
-            <!-- the prop means it can be used all over the place, the KEY makes it rerender when the element changes --> 
-       <TextSettings v-if="this.$root.ProjectState.SelectedCard.icon === 'file'"/>
-        <FolderSettings v-if="this.$root.ProjectState.SelectedCard.icon === 'folder'" />
- <v-row>
-        <v-col cols="12" class="text-right">
-         <v-dialog v-model="dialog" persistent max-width="290">
-      <template v-slot:activator="{ on }">
-        <v-btn color="error" small dark v-on="on"><v-icon left small dense >delete</v-icon> Delete</v-btn>
-      </template>
-      <v-card >
-        <v-card-title class="headline" ><v-icon left error >warning</v-icon> Delete this </v-card-title>
-        <v-card-text>Are you sure</v-card-text>
-        <v-card-actions class="justify-space-between" >
-          <v-btn color="success darken-1" text small @click="dialog = false">No Thanks</v-btn>
-          <v-btn color="error darken-1" text small  @click="DeleteItem()">DELETE IT</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-        </v-col>
-      </v-row>
        </div>     
         <div v-else>
           Empty Manuscript - may well have a bunch o settings here
@@ -45,18 +21,15 @@
 </template>
 
 <script>
-import ManuscriptTree from "../MenuTools/ManuscriptTree"
-import FolderSettings from "./FolderSettings"
-import TextSettings from "./TextSettings"
+import ManuscriptTree from "./ManuscriptTree"
 export default {
-  components: {
-    FolderSettings,
-    TextSettings,
-    ManuscriptTree
-  },
-  data: () => ({
+
+   components :{
+       ManuscriptTree
+   },
+   data: () => ({
     drawer: null,
-    dialog : false
+    dialog : false,
   }),
      methods:{
       DeleteItem() {
@@ -75,13 +48,32 @@ export default {
 .mainc{
   position: absolute;
   top:0px;
-  left:50px;
+  left:70px;
 right:0px;
 }
 .inset{
    top:0px;
-  left:260px;
+  left:300px;
 right:0px;
 }
 
+.ManuscriptBar{
+    position:fixed;
+     top:0px; 
+     left:0px;
+     bottom:0px;
+     padding-top:90px;
+}
+
+.folderButton{
+    margin:5px;
+}
+@media only screen and (min-width: 1264px) {
+.ManuscriptBar{
+      left:50px;
+  }
+  .folderButton{
+    margin:10px;
+}
+}
 </style>

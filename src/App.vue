@@ -80,7 +80,7 @@ export default {
   methods:{
   },
   mounted(){
-   // this.$vuetify.theme.dark = this.$store.state.Interface.darkmode;
+    this.$vuetify.theme.dark = this.$store.state.Interface.darkmode;
   }
 };
 
