@@ -5,6 +5,7 @@
     :list="list"
     :value="value"
     @input="emitter"
+    delay="500"
   >
     <div :key="el.uuid" v-for="(el, index) in realValue" >
       <v-list-item link  :class="TagMe(el)" >
