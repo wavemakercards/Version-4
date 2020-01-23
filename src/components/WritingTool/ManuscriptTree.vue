@@ -54,7 +54,7 @@ export default {
       let newObj = {
         uuid: uuid,
         icon: payload,
-        name: "New " + payload
+        title : ''
       };
       if (payload === "folder") {
         newObj.open = true;
@@ -79,7 +79,6 @@ export default {
   this.$root.SaveProjectData();
     }
   },
-  beforeMount() {}
 };
 </script>
 

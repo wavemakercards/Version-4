@@ -77,10 +77,3 @@ export default {
   })
 };
 </script>
-<style scoped>
-.consoleFeedback {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.1rem;
-}
-</style>

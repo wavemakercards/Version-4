@@ -8,18 +8,7 @@
           </v-col>
         </v-row>
 
-        <div v-if="goal===items">
-<div v-for="(item, index) in ItemList" :key="index">
-  <span v-if="item.title===''">NO TiTLE</span>  > {{item.title}}
-</div>
-        </div>
-        <div v-else style="width:100px">
-       <v-progress-linear
-      indeterminate
-      color="yellow darken-2"
-    ></v-progress-linear>
-
-        </div>
+ 
 
 
       <v-row v-if="database.length >0">
@@ -64,9 +53,7 @@ export default {
     return {
       database: [],
       ItemList  : [],
-      uuids : [],
-      goal : 0,
-      items : 0
+      uuids : []
     };
   },
   methods: {
@@ -93,7 +80,7 @@ export default {
   },
   beforeMount() {
     
-    this.makeBing(this.$root.ProjectState.Manuscript.elements);
+   // this.makeBing(this.$root.ProjectState.Manuscript.elements);
     let p = this.$root.db.FileCards.toArray();
     p.then((d)=>{
              this.database = d
