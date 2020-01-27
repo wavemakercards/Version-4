@@ -1,33 +1,37 @@
 <template>
   <div>
     <v-container>
+<div  v-if="!loadingComplete">
+ Loading  ....
+</div>
+<div v-else>
+
       <div v-if="!CardNode">
         <v-row>
           <v-col cols="12" class>
             <v-progress-linear indeterminate color="yellow darken-2"></v-progress-linear>
          
             <h1>New Card</h1>
-            <v-alert type="info" >
+            <v-alert type="success" >
                  <h3>Add a New Unique Card here</h3>
               <v-btn @click="AddNewCard" class="primary">
                 <v-icon>add</v-icon>Add New
               </v-btn>
             </v-alert>
 
-              <v-alert type="warning" >
+              <v-alert type="info" >
                  <h3>Link to an existing card</h3>
+
+<PickACard />
+
               <v-btn @click="AddNewCard" class="warning">
                 <v-icon>add</v-icon>Add New
               </v-btn>
-            </v-alert>
-
-
-              <v-alert type="error" >
-                 <h3>Add a New Unique Card here</h3>
-              <v-btn @click="AddNewCard" class="error">
+               <v-btn @click="AddNewCard" class="error">
                 <v-icon>add</v-icon>Add New
               </v-btn>
             </v-alert>
+
           </v-col>
         </v-row>
       </div>
@@ -64,11 +68,14 @@
           </v-row>
         </div>
       </div>
+       </div>
     </v-container>
   </div>
+ 
 </template>
 
 <script>
+import PickACard from "./PickACard"
 import {
   // component
   TiptapVuetify,
@@ -93,12 +100,12 @@ import {
 } from "tiptap-vuetify";
 
 export default {
-  components: { TiptapVuetify },
+  components: { TiptapVuetify, PickACard },
   computed: {
     toolbarAttrs() {
       return this.$vuetify.theme.isDark
-        ? { color: "purple", dark: true }
-        : { color: "primary", dark: true };
+        ? { color: "", dark: true }
+        : { color: "", dark: false };
     }
   },
   props: {
@@ -109,6 +116,7 @@ export default {
       dialog: false,
       showPrefs: false,
       CardNode: false,
+      loadingComplete : false,
       extensions: [
         History,
         Blockquote,
@@ -169,9 +177,12 @@ export default {
           this.CardNode = data;
           this.CardTitle = data.title;
           this.CardBody = data.body;
+          
         } else {
           //Selected Item not in DB shoule be a No No?");
         }
+        // tell it loading is done
+        this.loadingComplete = true
       });
     },
     AddNewCard(){
@@ -231,8 +242,9 @@ export default {
   left: 0px;
   right: 0px;
   text-align: center;
-  top: 60px;
+  top: 54px;
   z-index: 1;
+
 }
 .tiptap-vuetify-editor__content {
   min-height: 700px;
@@ -243,7 +255,16 @@ export default {
   margin: 0 auto;
 }
 
-.editorFrame {
-  margin-left: 2%;
+
+@media only screen and (min-width: 1264px) {
+.tiptap-vuetify-editor__toolbar {
+  top: 62px;
+
 }
+.tiptap-vuetify-editor__content {
+  min-height: 700px;
+}
+
+}
+
 </style>

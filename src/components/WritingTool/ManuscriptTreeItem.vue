@@ -85,7 +85,7 @@ export default {
       let response = "";
       if (this.$root.ProjectState.SelectedCard) {
         if (el.uuid === this.$root.ProjectState.SelectedCard.uuid) {
-          response = "primary";
+          response = "accent";
         }
       }
       return response;

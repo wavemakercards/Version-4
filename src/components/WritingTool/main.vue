@@ -102,13 +102,13 @@ export default {
 .mainc{
   position: absolute;
   top:0px;
-  left:70px;
-right:0px;
+  left:50px;
+  right:50px;
 }
 .inset{
    top:0px;
-  left:300px;
-right:0px;
+  left:270px;
+right:50px;
 }
 
 .ManuscriptBar{
@@ -116,18 +116,16 @@ right:0px;
      top:0px; 
      left:0px;
      bottom:0px;
-     padding-top:90px;
+     padding-top:47px;
 }
 
 .folderButton{
-    margin:5px;
+    margin:10px;
 }
 @media only screen and (min-width: 1264px) {
 .ManuscriptBar{
       left:50px;
+      padding-top:61px;
   }
-  .folderButton{
-    margin:10px;
-}
 }
 </style>

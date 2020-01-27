@@ -1,7 +1,7 @@
 <style scoped>
 .sticky {
   position: sticky;
-  top: 0px;
+  top: 10px;
   z-index: 999;
 }
 </style>
