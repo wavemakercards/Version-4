@@ -44,7 +44,7 @@ add this to v-app to get the background to change
  -->
   <v-app >
    <Loading v-if="ShowSection ==='Loading' || !this.$store.state.AppLoaded"/>
-   <MainMenu v-if="ShowSection ==='Create'"/>
+   <ProjectManagement v-if="ShowSection ==='Create'"/>
    <WaveMaker v-if="ShowSection ==='Project'"/>
 
   </v-app>
@@ -53,13 +53,13 @@ add this to v-app to get the background to change
 <script>
 import Loading from "./components/Loading";
 import WaveMaker from "./components/WaveMaker";
-import MainMenu from "./components/MainMenu";
+import ProjectManagement from "./components/ProjectManagement";
 
 export default {
   components: {
     Loading,
     WaveMaker,
-    MainMenu
+    ProjectManagement
   },
   computed :{
       theme(){

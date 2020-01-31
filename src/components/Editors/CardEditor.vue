@@ -22,7 +22,7 @@
               <v-alert type="info" >
                  <h3>Link to an existing card</h3>
 
-<PickACard />
+                <PickACard />
 
               <v-btn @click="AddNewCard" class="warning">
                 <v-icon>add</v-icon>Add New
