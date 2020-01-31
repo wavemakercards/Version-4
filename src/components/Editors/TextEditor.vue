@@ -16,8 +16,6 @@
             </ol>
           </v-col>
         </v-row>
-
-      
       </div>
 
       <div v-if="!showPrefs">

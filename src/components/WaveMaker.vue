@@ -5,12 +5,12 @@
       
 
 
- <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
+
+            
                     <v-btn
                       icon
                      target="_blank"
-                      v-on="on"
+              
                       @click="drawer = !drawer" class="hidden-lg-and-up"
                     >
                                  <v-app-bar-nav-icon >
@@ -56,9 +56,8 @@
           </g>
         </svg>
       </v-app-bar-nav-icon>
-                  </template>
-                  <span>Toggle Menu</span>
-                </v-tooltip>
+             
+     
 
 
 <!--

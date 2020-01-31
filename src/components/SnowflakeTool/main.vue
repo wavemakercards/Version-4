@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <h1>{{this.$root.ProjectState.Section}} Tool</h1>
-    <v-container>
+  <div style="padding-bottom:100px;">
+    <v-container v-if="!toolinfo">
+  <v-row v-if="tooldata.length === 0">
+      <h1>NOTHING HERE CLICK THE PLUS!!</h1>
+  </v-row>
+
       <v-row v-if="tooldata.length >0">
-        <v-col md-3 v-for="(item, index) in tooldata" :key="index">
+        <v-col class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+        v-for="(item, index) in tooldata" :key="index">
           <v-card height="100%">
             <v-list-item>
               <v-list-item-content>
@@ -14,7 +18,7 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn  accent>Read</v-btn>
+              <v-btn  accent @click="SetToolinfo(item)"  >Read</v-btn>
               <v-btn  accent>Bookmark</v-btn>
               <v-spacer></v-spacer>
               <v-btn icon>
@@ -28,6 +32,8 @@
         </v-col>
          
       </v-row>
+
+
        <v-btn
               fixed
               fab
@@ -37,6 +43,41 @@
             @click.native="AddNewTool"
             >
               <v-icon>add</v-icon>
+            </v-btn>
+    </v-container>
+  
+  
+  
+    <v-container v-if="toolinfo">
+
+  <v-row >
+          <v-text-field
+            v-model="toolinfo.title"
+            dense
+            label="Name"
+            placeholder="Type here ..."
+          ></v-text-field>
+<template v-if="toolinfo.data.length">
+<div v-for="(item,index) in toolinfo.data" :key="index" >
+{{item}}
+</div>
+</template>
+
+
+
+  </v-row>
+
+
+      <v-btn
+              fixed
+              fab
+              small
+              bottom
+              right
+            class="error"
+            @click="toolinfo=null"
+            >
+              <v-icon>close</v-icon>
             </v-btn>
     </v-container>
    
@@ -49,15 +90,20 @@
 export default {
   data() {
     return {
-        tooldata: []
+        tooldata: [],
+        toolinfo : null
     };
   },
   methods: {
+    SetToolinfo(i){
+          this.toolinfo=i
+    },
       AddNewTool(){
         let id =this.$root.uuid.v1()
         let newObj = {}
         newObj.uuid= id
         newObj.title = "Title Here"
+        newObj.data = []
          newObj.lastupdated =  Date.now();
          this.tooldata.push(newObj)
         this.SaveToolData(newObj)
