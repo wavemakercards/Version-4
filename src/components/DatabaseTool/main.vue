@@ -7,10 +7,6 @@
             <v-text-field flat hide-details label="Search" prepend-inner-icon="search" />
           </v-col>
         </v-row>
-
- 
-
-
       <v-row v-if="database.length >0">
         <v-col class="col-12 col-sm-6 col-md-4 col-xl-3 " v-for="(item, index) in database" :key="index">
           <v-card height="100%" class="manuscriptCSS">

@@ -33,8 +33,6 @@ Manuscript css class this will be user editable eventually
     padding: 20px;
     width: 100%;
   }
-
-
 </style>
 
 <template>

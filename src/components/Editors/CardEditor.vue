@@ -5,7 +5,6 @@
  Loading  ....
 </div>
 <div v-else>
-
       <div v-if="!CardNode">
         <v-row>
           <v-col cols="12" class>
@@ -22,7 +21,7 @@
               <v-alert type="info" >
                  <h3>Link to an existing card</h3>
 
-                <PickACard />
+                 <PickACard />
 
               <v-btn @click="AddNewCard" class="warning">
                 <v-icon>add</v-icon>Add New
@@ -56,7 +55,7 @@
         <div v-if="!showPrefs">
           <v-row>
             <v-col cols="12" class="manuscriptCSS">
-              <v-text-field v-model="CardTitle" dense label="Regular" placeholder="Placeholder"></v-text-field>
+              <v-text-field v-model="CardTitle" dense label="Title" placeholder=""></v-text-field>
               <tiptap-vuetify
                 v-model="CardBody"
                 :extensions="extensions2"

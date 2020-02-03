@@ -51,21 +51,47 @@
     <v-container v-if="toolinfo">
 
   <v-row >
+     <v-col class="col-xs-12">
           <v-text-field
             v-model="toolinfo.title"
             dense
             label="Name"
             placeholder="Type here ..."
           ></v-text-field>
-<template v-if="toolinfo.data.length">
-<div v-for="(item,index) in toolinfo.data" :key="index" >
-{{item}}
+     </v-col>
+      </v-row>
+  
+<div v-if="toolinfo.data.length">
+<v-row v-for="(item,index) in toolinfo.data" :key="index" >
+
+        <v-col class="col-6">
+
+          <v-card height="100%">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline">
+           title
+                    </v-list-item-title>
+                             {{item.uuid}}
+              </v-list-item-content>
+            </v-list-item>
+            <v-card-actions>
+              <v-btn  accent>Read</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn icon>
+                <v-icon>ac_unit</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+
+
 </div>
-</template>
 
 
 
-  </v-row>
+
 
 
       <v-btn
@@ -97,6 +123,11 @@ export default {
   methods: {
     SetToolinfo(i){
           this.toolinfo=i
+          if(!this.toolinfo.data.length){
+              this.toolinfo.data=[{
+                uuid : this.$root.uuid.v1()
+              }]
+          }
     },
       AddNewTool(){
         let id =this.$root.uuid.v1()
