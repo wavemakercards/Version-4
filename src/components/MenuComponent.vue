@@ -104,7 +104,7 @@
 
       <v-list-item link @click="SetSection('export')" v-bind:class="{ accent: MySection ==='export' }">
           <v-list-item-action>
-            <v-icon>access_time</v-icon>
+            <v-icon>launch</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Export Options</v-list-item-title>

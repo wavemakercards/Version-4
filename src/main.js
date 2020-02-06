@@ -30,8 +30,15 @@ new Vue({
                 elements: []
             },
             SelectedCard: '', // allows the editor to know what card is selected
-            Section: ''
+            Section: '',
+            tools: {
+                timeline: {
+                    selectedtimeline: null
+                }
+            }
+
         }
+
     }),
     methods: {
         FindNodeByID: function(uuid, parentObj) {

@@ -17,8 +17,6 @@
             </v-list-item>
             <v-card-actions>
               <v-btn  primary @click="ChooseTimeline(item)">Select</v-btn>
-
-      
             </v-card-actions>
           </v-card>
         </v-col>
@@ -39,10 +37,16 @@
 
 <div v-if="SelectedTimeline">
   <v-container>
-      <v-btn color="primary" @click="SelectedTimeline=null" fab fixed right dark small>
+      <v-btn color="primary" @click="ClearSelectedTimeline()" fab fixed right dark small>
         <v-icon>cancel</v-icon>
       </v-btn>
-          </v-container>
+
+
+
+<v-btn  @click="AddCard(-1)">Add New Card</v-btn>
+      
+      
+      </v-container>
 </div>
    
   </div>
@@ -75,26 +79,45 @@ export default {
         }
       });
       },
+      ClearSelectedTimeline() {
+        this.SelectedTimeline=null
+this.$root.ProjectState.tools.timeline.selectedtimeline =null
+this.$root.SaveProjectData()
+      },
       ChooseTimeline(ChosenRecord){
         // get the data from the DB
+        console.log(ChosenRecord)
+        this.$root.ProjectState.tools.timeline.selectedtimeline = ChosenRecord
         this.SelectedTimeline = ChosenRecord
-        this.timelineEvents =JSON.parse( this.SelectedTimeline.data)
+        
         if(!this.SelectedTimeline.data){
           this.timelineEvents = []
+        }else{
+          this.timelineEvents =JSON.parse(this.SelectedTimeline.data)
+        }
+        this.$root.SaveProjectData()
+      },
+      AddCard(i){
+         console.log(i)
+        // if i is passed as -1 then it bottome  else the index to splice
+        let newObj ={}
+        newobj.id = this.$root.uuid.v1()
+        
+        if(i <0){
+        
         }
       }
   },
   beforeMount() {
 
-if(!this.$root.ProjectState.timeline){
-  this.$root.ProjectState.timeline = {}  // have the project state store an object that can hold data for this tool
-}
-
+if(this.$root.ProjectState.tools.timeline.selectedtimeline){
+  console.log("Exists",this.$root.ProjectState.tools.timeline.selectedtimeline)
+  this.SelectedTimeline = this.$root.ProjectState.tools.timeline.selectedtimeline
+  }
     let p = this.$root.db.Timelines.toArray();
     p.then((d)=>{
          this.tooldata = d
     })
-  
   }
 };
 </script>
