@@ -101,7 +101,7 @@ this.$root.SaveProjectData()
          console.log(i)
         // if i is passed as -1 then it bottome  else the index to splice
         let newObj ={}
-        newobj.id = this.$root.uuid.v1()
+        newObj.id = this.$root.uuid.v1()
         
         if(i <0){
         
