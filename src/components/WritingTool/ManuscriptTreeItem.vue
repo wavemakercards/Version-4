@@ -2,8 +2,6 @@
   <draggable
     v-bind="dragOptions"
     tag="div"
-    :list="list"
-    :value="value"
     @input="emitter"
     :delay="200"
     :delayOnTouchOnly="true"

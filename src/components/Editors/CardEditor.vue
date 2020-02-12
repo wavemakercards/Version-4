@@ -35,7 +35,7 @@
         </v-row>
       </div>
       <div v-else>
-        <v-btn color="primary" @click="showPrefs=!showPrefs" fab fixed right dark small>
+        <v-btn color="primary" @click="showPrefs=!showPrefs" icon  right  x-small>
           <v-icon>settings</v-icon>
         </v-btn>
         <div v-if="showPrefs">
@@ -246,7 +246,7 @@ export default {
 
 }
 .tiptap-vuetify-editor__content {
-  min-height: 700px;
+  min-height: 100px;
 }
 
 .tiptap-vuetify-editor__content pre {
@@ -261,7 +261,7 @@ export default {
 
 }
 .tiptap-vuetify-editor__content {
-  min-height: 700px;
+  min-height: 200px;
 }
 
 }

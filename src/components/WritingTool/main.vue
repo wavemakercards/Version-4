@@ -14,7 +14,7 @@
       </v-list>
     </v-navigation-drawer>
 
-  <v-btn fab small text @click="drawer = !drawer"  class="folderButton"><v-icon>folder_special</v-icon></v-btn>
+  <v-btn fab color="accent"  x-small  @click="drawer = !drawer"  class="folderButton"><v-icon>folder_special</v-icon></v-btn>
 
 
  <div class="mainc" :class="{ inset: drawer }">
@@ -121,6 +121,7 @@ right:50px;
 
 .folderButton{
     margin:10px;
+    margin-top:15px;
 }
 @media only screen and (min-width: 1264px) {
 .ManuscriptBar{
