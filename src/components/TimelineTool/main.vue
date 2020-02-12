@@ -58,7 +58,7 @@ justify-content: flex-end
 <div v-else > 
   <v-row >
     <v-col  > 
-<v-text-field  v-model="SelectedTimeline.title" dense label="Timeline Title" placeholder=""></v-text-field>
+<v-text-field @keyup="SaveTitleChange"  v-model="SelectedTimeline.title" dense label="Timeline Title" placeholder=""></v-text-field>
     </v-col>
   </v-row>
 
@@ -146,6 +146,11 @@ export default {
       newObj.lastupdated = Date.now();
       this.tooldata.push(newObj);
       this.SaveToolData(newObj);
+    },
+    SaveTitleChange(){
+     this.SelectedTimeline.lastupdated = Date.now();
+      this.SaveToolData(this.SelectedTimeline);
+      this.$root.SaveProjectData();
     },
     SaveToolData(newObj) {
       this.$root.db.Timelines.put(newObj).then(function(updated) {
