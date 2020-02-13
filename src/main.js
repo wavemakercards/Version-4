@@ -18,10 +18,12 @@ Vue.use(TiptapVuetifyPlugin, {
     vuetify
 });
 
-new Vue({
+window.App = new Vue({
     store,
     vuetify,
     data: () => ({
+        alertMsg: false,
+        alertMsgText: "Loading",
         db,
         uuid,
         ProjectState: {
@@ -38,7 +40,6 @@ new Vue({
             }
 
         }
-
     }),
     methods: {
         FindNodeByID: function(uuid, parentObj) {

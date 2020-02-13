@@ -45,7 +45,25 @@ add this to v-app to get the background to change
    <ProjectManagement v-if="ShowSection ==='Create'"/>
    <WaveMaker v-if="ShowSection ==='Project'"/>
 
+
+  <div class="text-center">
+     <v-snackbar
+      v-model="alertMsg"
+      :timeout="5000"
+    >
+      {{ this.$root.alertMsgText }}
+      <v-btn
+        color="blue"
+        text
+        @click="alertMsg=false"
+        >
+        x
+      </v-btn>
+    </v-snackbar>
+  </div>
+
   </v-app>
+
 </template>
 
 <script>
@@ -62,6 +80,10 @@ export default {
   computed :{
       theme(){
       return (this.$vuetify.theme.dark) ? 'dark' : 'light'
+    },
+    alertMsg:{
+    get:function(){return this.$root.alertMsg},
+    set:function(){ this.$root.alertMsg = false}
     },
     ShowSection(){
       let action = "Loading"
