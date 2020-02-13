@@ -34,6 +34,9 @@ new Vue({
             tools: {
                 timeline: {
                     selectedtimeline: null
+                },
+                planningBoard: {
+                    selectedplanningBoard: null
                 }
             }
 
