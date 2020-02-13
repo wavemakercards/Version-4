@@ -11,22 +11,27 @@ if (process.env.NODE_ENV === 'production') {
       )
     },
     registered () {
-      window.App.$root.alertMsgText ='Service worker has been registered.'
-      window.App.$root.alertMsg =true
+      console.log('Service worker has been registered.')
     },
     cached () {
+      console.log('Content has been cached for offline use.')
+      /*
       window.App.$root.alertMsgText ='Content has been cached for offline use.'
       window.App.$root.alertMsg =true
+      */
     },
     updatefound () {
+      console.log('New content is downloading.')
      window.App.$root.alertMsgText ='New content is downloading.'
      window.App.$root.alertMsg =true
     },
     updated () {
+      console.log('New content is available; please refresh.')
      window.App.$root.alertMsgText ='New content is available; please refresh.'
      window.App.$root.alertMsg =true
     },
     offline () {
+      console.log('No internet connection found. App is running in offline mode.')
      window.App.$root.alertMsgText ='No internet connection found. App is running in offline mode.'
      window.App.$root.alertMsg =true
     },
